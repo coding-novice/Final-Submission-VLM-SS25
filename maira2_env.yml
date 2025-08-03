@@ -1,0 +1,26 @@
+# environment.yml
+name: maira2_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10            # or your preferred 3.x
+  - pip
+  #- cudatoolkit=11.8       # include only if you have an NVIDIA GPU; omit for CPU-only
+  - pip:
+    - git+https://github.com/huggingface/transformers.git@88d960937c81a32bfb63356a2e8ecf7999619681   #specific transformers version required for MAIRA2
+    - pillow
+    - protobuf
+    - sentencepiece
+    - torch
+    - bitsandbytes
+    - accelerate>=0.26.0
+    - torchvision     # adds CPU INT8 kernels used by quantization (tiny)
+    - matplotlib
+    - numpy
+    - scikit-learn # for evaluating  (evaluate_metrics)
+    - supervision # for evaluating  (calculate_map)
+    - nltk # for evaluating  (evaluate_bleu)
+    - SimpleITK
+
+  # after adding more dependencies, run: conda env update -f environment.yml --v
