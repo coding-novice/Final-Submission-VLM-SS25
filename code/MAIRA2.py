@@ -14,10 +14,7 @@ QUANT_MODE = "fp32"      # "fp32" , "fp16", "int8", "8bit", "4bit", or "no loadi
 
 
 
-# x_ray_images_unprocessed_filepath = "/vol/miltank/users/vac/VLM/in/dataset/chest_xrays/images" # TODO remove
-# x_ray_images_processed_with_black_bars_filepath = "/vol/miltank/users/vac/VLM/in/dataset_processed/processed_chest_with_bars"
-# x_ray_images_processed_no_bars_filepath = "/vol/miltank/users/vac/VLM/in/dataset_processed/processed_chest_no_bars"
-# brain_images_filepath = "/vol/miltank/users/vac/VLM/in/dataset/nova_brain/images"
+
 
 # ───────── 0.1) AUTO PATH RESOLUTION (inputs & outputs) ────────────────────
 from pathlib import Path
@@ -27,7 +24,6 @@ import os
 SCRIPT_DIR = Path(__file__).resolve().parent
 
 # Path for all HuggingFace caches
-# cache_dir = "/vol/miltank/users/vac/VLM/model_download" # TODO remove after debugging
 
 # ───────── 0.2) AUTO CACHE DIR RESOLUTION ───────────────────────────────
 # Automatically point cache_dir to '<script-folder>/model_download'
@@ -141,9 +137,7 @@ if type_of_run == "chest X-ray extended data for unprocessed images":
     print("---------- Report Generation for X-Rays: unprocessed images ---------- ")
     x_ray_or_brain_images_filepath = x_ray_images_unprocessed_filepath
 
-    # non_grounded_reports_out_filepath     = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_X_Ray_unproc.csv" # TODO remove after debugging
-    # grounded_reports_out_filepath         = "/vol/miltank/users/vac/VLM/out/grounded_reports_X_Ray_unproc.csv"
-    # phrase_grounded_reports_out_filepath  = "/vol/miltank/users/vac/VLM/out/phrase_grounded_reports_X_Ray_unproc.json" 
+
 
     non_grounded_reports_out_filepath     = out_file("non_grounded_reports_X_Ray_unproc.csv")
     grounded_reports_out_filepath         = out_file("grounded_reports_X_Ray_unproc.csv")
@@ -155,9 +149,7 @@ elif type_of_run == "chest X-ray extended data for processed images with black b
     print("---------- Report Generation for X-Rays: processed images with black bars ---------- ")
     x_ray_or_brain_images_filepath = x_ray_images_processed_with_black_bars_filepath
 
-    # non_grounded_reports_out_filepath     = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_X_Ray_proc_w_bars.csv" # TODO remove after debugging
-    # grounded_reports_out_filepath         = "/vol/miltank/users/vac/VLM/out/grounded_reports_X_Ray_proc_w_bars.csv"
-    # phrase_grounded_reports_out_filepath  = "/vol/miltank/users/vac/VLM/out/phrase_grounded_reports_X_Ray_proc_w_bars.json"
+
 
     non_grounded_reports_out_filepath     = out_file("non_grounded_reports_X_Ray_proc_w_bars.csv")
     grounded_reports_out_filepath         = out_file("grounded_reports_X_Ray_proc_w_bars.csv")
@@ -169,9 +161,7 @@ elif type_of_run == "chest X-ray extended data for processed images no bars":
     print("---------- Report Generation for X-Rays: processed images with NO black bars ---------- ")
     x_ray_or_brain_images_filepath =  x_ray_images_processed_no_bars_filepath
 
-    # non_grounded_reports_out_filepath     = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_X_Ray_proc_no_bars.csv" # TODO remove after debugging
-    # grounded_reports_out_filepath         = "/vol/miltank/users/vac/VLM/out/grounded_reports_X_Ray_proc_no_bars.csv"
-    # phrase_grounded_reports_out_filepath  = "/vol/miltank/users/vac/VLM/out/phrase_grounded_reports_X_Ray_proc_no_bars.json"
+
 
     non_grounded_reports_out_filepath     = out_file("non_grounded_reports_X_Ray_proc_no_bars.csv")
     grounded_reports_out_filepath         = out_file("grounded_reports_X_Ray_proc_no_bars.csv")
@@ -183,7 +173,6 @@ elif type_of_run == "brain MRI extended data for simple prompt":
     # First brain run
     print("---------- Report Generation for Brain MRIs (Run 4): simple prompt for both ungrounded and grounded report, phrase grounded reports  ---------- ")
     run_non_grounded_report_all = True # Brain T1 (option A)
-    # non_grounded_reports_out_filepath = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_brain(prompt_simple).csv"  # TODO remove after debugging
 
     non_grounded_reports_out_filepath =  out_file("non_grounded_reports_brain(prompt_simple).csv")
 
@@ -192,14 +181,12 @@ elif type_of_run == "brain MRI extended data for simple prompt":
     technique_prompt_param_ng_all = "Brain MRI"
 
     run_grounded_report_all = True # Brain T2 (option A)
-    # grounded_reports_out_filepath         = "/vol/miltank/users/vac/VLM/out/grounded_reports_brain(prompt_simple).csv"  # TODO remove after debugging
     grounded_reports_out_filepath         = out_file("grounded_reports_brain(prompt_simple).csv")
     print_text_grounded_rep_all = "Starting grounded report // loop all 92 images (brain) (simple prompt)"
     indication_grounded = None
     technique_grounded = "Brain MRI"
 
     run_phrase_grounded_reports_single_phrase_92_brain = True # Brain T2 (option C)
-    # phrase_grounded_reports_single_phrase_92_out_filepath = "/vol/miltank/users/vac/VLM/out/phrase_grounded_reports_brain.json"  # TODO remove after debugging
     phrase_grounded_reports_single_phrase_92_out_filepath = out_file("phrase_grounded_reports_brain.json")
     phrase_grounded_reports_single_phrase_92_brain_print_text = "Starting phrase_grounded_reports_single_phrase (92 images) (brain)"
     phrase_grounded_single_phrase_92_report_phrase = "localize possible pathologies in the brain MRI image"
@@ -213,14 +200,12 @@ elif type_of_run == "brain MRI extended data for brain-specific prompt":
     # second brain run
     print("---------- Report Generation for Brain MRIs (Run 5): brain-specific prompt for both ungrounded and grounded report (no phrase grounded reports)  ---------- ")
     run_non_grounded_report_all = True # Brain T1 (option B)
-    # non_grounded_reports_out_filepath = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_brain(prompt_brain_specific).csv"  # TODO remove after debugging
     non_grounded_reports_out_filepath = out_file("non_grounded_reports_brain(prompt_brain_specific).csv")
     start_print_text = "Starting 6.1.2) non-grounded report [brain] // loop all 92 images (more specific prompt to trigger brain knowledge)"
     indication_prompt_param_ng_all = "Describe the brain in the picture. Point out pathologies, if present." # [this exact indication occurs twice in this code]
     technique_prompt_param_ng_all = "Brain MRI"
 
     run_grounded_report_all = True 
-    # grounded_reports_out_filepath         = "/vol/miltank/users/vac/VLM/out/grounded_reports_brain(prompt_brain_specific).csv"  # TODO remove after debugging
     grounded_reports_out_filepath         =  out_file("grounded_reports_brain(prompt_brain_specific).csv")
     print_text_grounded_rep_all = "Starting grounded report // loop all 92 images (more specific prompt to trigger brain knowledge) "
     indication_grounded = "Describe the brain in the picture. Point out pathologies, if present." # [this exact indication occurs twice in this code]
@@ -236,8 +221,6 @@ elif type_of_run == "chest X-ray used data":
 
     x_ray_or_brain_images_filepath = x_ray_images_processed_with_black_bars_filepath
 
-    # non_grounded_reports_out_filepath     = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_X_Ray_proc_w_bars.csv"  # TODO remove after debugging
-    # phrase_grounded_reports_out_filepath  = "/vol/miltank/users/vac/VLM/out/phrase_grounded_reports_X_Ray_unproc.json"   # TODO remove after debugging
 
     non_grounded_reports_out_filepath     = out_file("non_grounded_reports_X_Ray_proc_w_bars.csv") 
     phrase_grounded_reports_out_filepath  = out_file("phrase_grounded_reports_X_Ray_unproc.json") 
@@ -264,14 +247,12 @@ elif type_of_run == "brain MRI used data":
 
     print("---------- Report Generation for Brain MRIs : data used in evaluation // simple prompt for ungrounded report, phrase grounded reports  ---------- ")
     run_non_grounded_report_all = True # Brain T1 (option A)
-    # non_grounded_reports_out_filepath = "/vol/miltank/users/vac/VLM/out/non_grounded_reports_brain(prompt_simple).csv"  # TODO remove after debugging
     non_grounded_reports_out_filepath = out_file("non_grounded_reports_brain(prompt_simple).csv")
     start_print_text = "Starting 6.1.2) non-grounded report [brain] // loop all 92 images (simple prompt)"
     indication_prompt_param_ng_all = None
     technique_prompt_param_ng_all = "Brain MRI"
 
     run_grounded_report_all = True # Brain T2 (option A)
-    # grounded_reports_out_filepath         = "/vol/miltank/users/vac/VLM/out/grounded_reports_brain(prompt_simple).csv"  # TODO remove after debugging
     grounded_reports_out_filepath         =  out_file("grounded_reports_brain(prompt_simple).csv")
     print_text_grounded_rep_all = "Starting grounded report // loop all 92 images (brain) (simple prompt)"
     indication_grounded = None
@@ -282,7 +263,6 @@ elif type_of_run == "brain MRI used data":
 
 
     run_phrase_grounded_reports_single_phrase_92_brain = True # Brain T2 (option C)
-    # phrase_grounded_reports_single_phrase_92_out_filepath = "/vol/miltank/users/vac/VLM/out/phrase_grounded_reports_brain.json"  # TODO remove after debugging
     phrase_grounded_reports_single_phrase_92_out_filepath =  out_file("phrase_grounded_reports_brain.json")
     phrase_grounded_reports_single_phrase_92_brain_print_text = "Starting phrase_grounded_reports_single_phrase (92 images) (brain)"
     phrase_grounded_single_phrase_92_report_phrase = "localize possible pathologies in the brain MRI image"
