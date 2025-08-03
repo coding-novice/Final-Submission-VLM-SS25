@@ -57,16 +57,4 @@ The directory `code` contains the following files:
 - This is the code that is being executed by the two sbatch files.
 - The code expects the file structure portrayed below. Please ensure the input data is in the correct location.
 
-<project-root>/
-├── MAIRA2.py
-├── in/                 # Input data (user-provided)
-│ ├── dataset/
-│ │ ├── chest_xrays/
-│ │ │ └── images/       # chest X-ray images in .png format
-│ │ └── nova_brain/
-│ │ └── images/         # brain MRI images in .png format
-│ └── dataset_processed/ 
-│ ├── processed_chest_with_bars/    # processed chest X-ray images (with black bars) in .png format
-│ └── processed_chest_no_bars/      # processed chest X-ray images (with no bars) in .png format
-├── out/                            # this is where the outputs of the code will be saved (.csv and .json)
-└── slurm_output/                   # job-submission scripts will be saved here, when running the .sbatch files
+<pre> ``` <project-root>/ ├── MAIRA2.py ├── in/ # Input data (user-provided) │ ├── dataset/ │ │ ├── chest_xrays/ │ │ │ └── images/ # chest X-ray images in .png format │ │ └── nova_brain/ │ │ └── images/ # brain MRI images in .png format │ └── dataset_processed/ │ ├── processed_chest_with_bars/ # processed chest X-ray images (with black bars) in .png format │ └── processed_chest_no_bars/ # processed chest X-ray images (with no bars) in .png format ├── out/ # Outputs (.csv and .json) will be saved here └── slurm_output/ # Job-submission scripts (.sbatch files) saved here ``` </pre>
